@@ -5,6 +5,13 @@ struct Person
 { //职工基本信息的结构
     double salary;
     char *name;
+    Person() : salary(0.0), name(nullptr) {};
+    ~Person() {
+        if(name) {
+            delete [] name;
+            name = nullptr;
+        }
+    }
 };
 class SalaryManaege
 {
@@ -40,7 +47,10 @@ public:
             cout << employ[i].name << "   " << employ[i].salary << endl;
     }
     ~SalaryManaege() {
-        delete employ;
+        if(employ){
+            delete [] employ;
+            employ = nullptr;
+        }
     }
 };
 int main()
